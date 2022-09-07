@@ -5,7 +5,8 @@
 //
 
 import Foundation
-import UIKit
+//#if !os(macOS)
+//import UIKit
 
 /// An HTTP client performs HTTP requests.
 ///
@@ -30,6 +31,7 @@ public protocol HTTPClient: Loggable {
     ) -> Cancellable
 
 }
+@available(macOS 10.15, *)
 
 public extension HTTPClient {
 
@@ -110,12 +112,12 @@ public extension HTTPClient {
     }
 
     /// Fetches the resource as an `UIImage`.
-    func fetchImage(_ request: HTTPRequestConvertible, completion: @escaping (HTTPResult<UIImage>) -> Void) -> Cancellable {
-        fetch(request,
-            decoder: { UIImage(data: $1) },
-            completion: completion
-        )
-    }
+//    func fetchImage(_ request: HTTPRequestConvertible, completion: @escaping (HTTPResult<UIImage>) -> Void) -> Cancellable {
+//        fetch(request,
+//            decoder: { UIImage(data: $1) },
+//            completion: completion
+//        )
+//    }
 
     /// Downloads the resource at a temporary location.
     ///

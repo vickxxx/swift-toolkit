@@ -9,7 +9,7 @@
 //  in the LICENSE file present in the project repository where this source code is maintained.
 //
 
-import UIKit
+import AppKit
 import Minizip
 import R2Shared
 

@@ -25,14 +25,17 @@ public class ReadiumWebPubParser: PublicationParser, Loggable {
         case invalidManifest
     }
     
-    private let pdfFactory: PDFDocumentFactory
+//    private let pdfFactory: PDFDocumentFactory
     private let httpClient: HTTPClient
-    
-    public init(pdfFactory: PDFDocumentFactory, httpClient: HTTPClient) {
-        self.pdfFactory = pdfFactory
+    public init(httpClient: HTTPClient){
         self.httpClient = httpClient
     }
     
+//    public init(pdfFactory: PDFDocumentFactory, httpClient: HTTPClient) {
+//        self.pdfFactory = pdfFactory
+//        self.httpClient = httpClient
+//    }
+//
     public func parse(asset: PublicationAsset, fetcher: Fetcher, warnings: WarningLogger?) throws -> Publication.Builder? {
         guard let mediaType = asset.mediaType(), mediaType.isReadiumWebPubProfile else {
             return nil
@@ -85,8 +88,8 @@ public class ReadiumWebPubParser: PublicationParser, Loggable {
             fetcher: fetcher,
             servicesBuilder: PublicationServicesBuilder(setup: {
                 switch mediaType {
-                case .lcpProtectedPDF:
-                    $0.setPositionsServiceFactory(LCPDFPositionsService.makeFactory(pdfFactory: self.pdfFactory))
+//                case .lcpProtectedPDF:
+//                    $0.setPositionsServiceFactory(LCPDFPositionsService.makeFactory(pdfFactory: self.pdfFactory))
                 case .divina, .divinaManifest:
                     $0.setPositionsServiceFactory(PerResourcePositionsService.makeFactory(fallbackMediaType: "image/*"))
                 case .readiumAudiobook, .readiumAudiobookManifest, .lcpProtectedAudiobook:

@@ -15,6 +15,9 @@ import Foundation
 /// Core Collection Model
 /// https://readium.org/webpub-manifest/schema/subcollection.schema.json
 /// Can be used as extension point in the Readium Web Publication Manifest.
+///     @available(macOS 11.0, *)
+@available(macOS 11.0, *)
+
 public struct PublicationCollection: JSONEquatable, Hashable {
     
     public var metadata: [String: Any] { metadataJSON.json }
@@ -63,6 +66,7 @@ public struct PublicationCollection: JSONEquatable, Hashable {
         ], additional: Self.serializeCollections(subcollections))
     }
     
+    @available(macOS 11.0, *)
     public static func == (lhs: PublicationCollection, rhs: PublicationCollection) -> Bool {
         guard #available(iOS 11.0, *) else {
             // The JSON comparison is not reliable before iOS 11, because the keys order is not deterministic. Since the equality is only tested during unit tests, it's not such a problem.

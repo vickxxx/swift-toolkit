@@ -12,7 +12,7 @@
 import Foundation
 import R2Shared
 import GCDWebServer
-import UIKit
+import AppKit
 
 extension PublicationServer: Loggable {}
 
@@ -63,7 +63,7 @@ public class PublicationServer: ResourcesServer {
         }
         addStaticResourcesHandlers()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSApplication.willEnterForegroundNotification, object: nil)
     }
     
     deinit {
@@ -111,7 +111,7 @@ public class PublicationServer: ResourcesServer {
             GCDWebServerOption_BindToLocalhost: true,
             // We disable automatically suspending the server in the background, to be able to play
             // audiobooks even with the screen locked.
-            GCDWebServerOption_AutomaticallySuspendInBackground: false
+//            GCDWebServerOption_AutomaticallySuspendInBackground: false
         ])
     }
     

@@ -14,6 +14,7 @@ import Foundation
 
 // MARK: - JSON Serialization
 
+@available(macOS 11.0, *)
 public func serializeJSONString(_ object: Any) -> String? {
     var options: JSONSerialization.WritingOptions = []
     if #available(iOS 11.0, *) {
@@ -48,6 +49,7 @@ public protocol JSONEquatable: Equatable, CustomDebugStringConvertible {
     
 }
 
+@available(macOS 11.0, *)
 extension JSONEquatable {
     
     public static func == (lhs: Self, rhs: Self) -> Bool {

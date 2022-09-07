@@ -10,13 +10,13 @@ import PackageDescription
 let package = Package(
     name: "Readium",
     defaultLocalization: "en",
-    platforms: [.iOS(.v10)],
+    platforms: [.macOS(.v11)],
     products: [
         .library(name: "R2Shared", targets: ["R2Shared"]),
         .library(name: "R2Streamer", targets: ["R2Streamer"]),
-        .library(name: "R2Navigator", targets: ["R2Navigator"]),
-        .library(name: "ReadiumOPDS", targets: ["ReadiumOPDS"]),
-        .library(name: "ReadiumLCP", targets: ["ReadiumLCP"]),
+//        .library(name: "R2Navigator", targets: ["R2Navigator"]),
+//        .library(name: "ReadiumOPDS", targets: ["ReadiumOPDS"]),
+//        .library(name: "ReadiumLCP", targets: ["ReadiumLCP"]),
     ],
     dependencies: [
         .package(url: "https://github.com/cezheng/Fuzi.git", from: "3.1.3"),
@@ -43,18 +43,18 @@ let package = Package(
             ],
             linkerSettings: [
                 .linkedFramework("CoreServices"),
-                .linkedFramework("UIKit"),
+//                .linkedFramework("UIKit"),
             ]
         ),
-        .testTarget(
-            name: "R2SharedTests",
-            dependencies: ["R2Shared"],
-            path: "Tests/SharedTests",
-            resources: [
-                .copy("Fixtures"),
-            ]
-        ),
-
+//        .testTarget(
+//            name: "R2SharedTests",
+//            dependencies: ["R2Shared"],
+//            path: "Tests/SharedTests",
+//            resources: [
+//                .copy("Fixtures"),
+//            ]
+//        ),
+//
         .target(
             name: "R2Streamer",
             dependencies: [
@@ -69,67 +69,67 @@ let package = Package(
                 .copy("Assets"),
             ]
         ),
-        .testTarget(
-            name: "R2StreamerTests",
-            dependencies: ["R2Streamer"],
-            path: "Tests/StreamerTests",
-            resources: [
-                .copy("Fixtures"),
-            ]
-        ),
+//        .testTarget(
+//            name: "R2StreamerTests",
+//            dependencies: ["R2Streamer"],
+//            path: "Tests/StreamerTests",
+//            resources: [
+//                .copy("Fixtures"),
+//            ]
+//        ),
 
-        .target(
-            name: "R2Navigator",
-            dependencies: [
-                "DifferenceKit",
-                "SwiftSoup",
-                "R2Shared"
-            ],
-            path: "Sources/Navigator",
-            exclude: [
-                "EPUB/Scripts",
-            ],
-            resources: [
-                .copy("EPUB/Assets"),
-                .process("Resources"),
-            ]
-        ),
-        .testTarget(
-            name: "R2NavigatorTests",
-            dependencies: ["R2Navigator"],
-            path: "Tests/NavigatorTests"
-        ),
+//        .target(
+//            name: "R2Navigator",
+//            dependencies: [
+//                "DifferenceKit",
+//                "SwiftSoup",
+//                "R2Shared"
+//            ],
+//            path: "Sources/Navigator",
+//            exclude: [
+//                "EPUB/Scripts",
+//            ],
+//            resources: [
+//                .copy("EPUB/Assets"),
+//                .process("Resources"),
+//            ]
+//        ),
+//        .testTarget(
+//            name: "R2NavigatorTests",
+//            dependencies: ["R2Navigator"],
+//            path: "Tests/NavigatorTests"
+//        ),
+//
+//        .target(
+//            name: "ReadiumOPDS",
+//            dependencies: [
+//                "Fuzi",
+//                "R2Shared"
+//            ],
+//            path: "Sources/OPDS"
+//        ),
+//        .testTarget(
+//            name: "ReadiumOPDSTests",
+//            dependencies: ["ReadiumOPDS"],
+//            path: "Tests/OPDSTests",
+//            resources: [
+//                .copy("Samples"),
+//            ]
+//        ),
 
-        .target(
-            name: "ReadiumOPDS",
-            dependencies: [
-                "Fuzi",
-                "R2Shared"
-            ],
-            path: "Sources/OPDS"
-        ),
-        .testTarget(
-            name: "ReadiumOPDSTests",
-            dependencies: ["ReadiumOPDS"],
-            path: "Tests/OPDSTests",
-            resources: [
-                .copy("Samples"),
-            ]
-        ),
-
-        .target(
-            name: "ReadiumLCP",
-            dependencies: [
-                "CryptoSwift",
-                "ZIPFoundation",
-                "R2Shared",
-                .product(name: "SQLite", package: "SQLite.swift"),
-            ],
-            path: "Sources/LCP",
-            resources: [
-                .process("Resources")
-            ]
-        ),
+//        .target(
+//            name: "ReadiumLCP",
+//            dependencies: [
+//                "CryptoSwift",
+//                "ZIPFoundation",
+//                "R2Shared",
+//                .product(name: "SQLite", package: "SQLite.swift"),
+//            ],
+//            path: "Sources/LCP",
+//            resources: [
+//                .process("Resources")
+//            ]
+//        ),
         // These tests require a R2LCPClient.framework to run.
         // FIXME: Find a solution to run the tests with GitHub action.
         // .testTarget(

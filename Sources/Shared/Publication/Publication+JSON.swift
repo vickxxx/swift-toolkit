@@ -75,6 +75,7 @@ extension JSONDictionary: Collection {
 
 extension JSONDictionary: Equatable {
     
+    @available(macOS 11.0, *)
     static func == (lhs: JSONDictionary, rhs: JSONDictionary) -> Bool {
         guard #available(iOS 11.0, *) else {
             // The JSON comparison is not reliable before iOS 11, because the keys order is not
@@ -88,6 +89,7 @@ extension JSONDictionary: Equatable {
     }
 
 }
+@available(macOS 11.0, *)
 
 extension JSONDictionary: Hashable {
     

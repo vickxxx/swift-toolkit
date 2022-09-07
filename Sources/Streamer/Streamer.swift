@@ -17,13 +17,13 @@ public final class Streamer: Loggable {
     
     /// Creates the default parsers provided by Readium.
     public static func makeDefaultParsers(
-        pdfFactory: PDFDocumentFactory = DefaultPDFDocumentFactory(),
+//        pdfFactory: PDFDocumentFactory = DefaultPDFDocumentFactory(),
         httpClient: HTTPClient = DefaultHTTPClient()
     ) -> [PublicationParser] {
         [
             EPUBParser(),
-            PDFParser(pdfFactory: pdfFactory),
-            ReadiumWebPubParser(pdfFactory: pdfFactory, httpClient: httpClient),
+//            PDFParser(pdfFactory: pdfFactory),
+//            ReadiumWebPubParser(pdfFactory: pdfFactory, httpClient: httpClient),
             ImageParser(),
             AudioParser()
         ]
@@ -50,14 +50,15 @@ public final class Streamer: Loggable {
         ignoreDefaultParsers: Bool = false,
         contentProtections: [ContentProtection] = [],
         archiveFactory: ArchiveFactory = DefaultArchiveFactory(),
-        pdfFactory: PDFDocumentFactory = DefaultPDFDocumentFactory(),
+//        pdfFactory: PDFDocumentFactory = DefaultPDFDocumentFactory(),
         httpClient: HTTPClient = DefaultHTTPClient(),
         onCreatePublication: Publication.Builder.Transform? = nil
     ) {
-        self.parsers = parsers + (ignoreDefaultParsers ? [] : Streamer.makeDefaultParsers(pdfFactory: pdfFactory, httpClient: httpClient))
+//        self.parsers = parsers + (ignoreDefaultParsers ? [] : Streamer.makeDefaultParsers(pdfFactory: pdfFactory, httpClient: httpClient))
         self.contentProtections = contentProtections
         self.archiveFactory = archiveFactory
         self.onCreatePublication = onCreatePublication
+        self.parsers = [EPUBParser()]
     }
     
     private let parsers: [PublicationParser]
